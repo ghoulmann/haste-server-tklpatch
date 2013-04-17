@@ -1,0 +1,111 @@
+    1  nano /etc/hostname
+    2  echo "haste" > /etc/hostname
+    3  nano /etc/hosts
+    4  apt-get update && apt-get upgrade -y && apt-get install -y git-core build-essential curl wget openssl redis-server libssl-dev
+    5  cd /tmp
+    6  cd /opt
+    7  git clone http://github.com/ry/node.git /opt/node
+    8  ls
+    9  cd node
+   10  ./configure && make && make install
+   11  cd ..
+   12  rm -r node/
+   13  cd /tmp
+   14  ls
+   15  curl google.com
+   16  ls
+   17  curl https://npmjs.org/install.sh | sh
+   18  git clone https://github.com/seejohnrun/haste-server.git /opt/haste-server
+   19  cd /opt/haste-server/
+   20  ls
+   21  apt-get install apache2 webmin-apache libapache2-mod-proxy-html ssl-cert -y
+   22  ifconfig
+   23  ls
+   24  npm install
+   25  ifconfig
+   26  ls
+   27  npm start
+   28  apt-get install ssl-cert
+   29  apt-get install lib-apache2-mod-proxy-html
+   30  apt-get install libapache2-mod-proxy-html
+   31  a2enmod proxy
+   32  service apache2 reload
+   33  cd /etc/apache2/sites-available/
+   34  ls
+   35  touch haste
+   36  echo "ProxyPass / http://localhost:7777/" >> haste 
+   37  cat haste
+   38  echo "ProxyPassReverse / http://127.0.0.1:7777/" haste
+   39  echo "ProxyPassReverse / http://127.0.0.1:7777/" >> haste
+   40  cat haste
+   41  cd /opt/haste-server/
+   42  ls
+   43  npm start
+   44  a2ensite haste
+   45  a2dissite default
+   46  service apache2 reload
+   47  ls
+   48  cd /etc/apache2/sites-available/
+   49  ls
+   50  cd ..
+   51  cd sites-enabled/
+   52  ls
+   53  cd /opt/haste-server/
+   54  npm start
+   55  a2enmod http
+   56  a2enmod proxy_html
+   57  cd /etc/apache2/sites-enabled/
+   58  ls
+   59  cat haste
+   60  nano haste
+   61  cd ../sites-available/
+   62  ls
+   63  cat haste 
+   64  a2ensite default
+   65  service apache2 reload
+   66  cd /var/log/
+   67  ls
+   68  cd apache2/
+   69  tail error.log
+   70  a2dissite 000-default
+   71  service apache2 reload
+   72  ifconfig
+   73  shutdown -r now
+   74  ifconfig
+   75  cd /opt
+   76  ls
+   77  cd haste-server/
+   78  ls
+   79  npm start
+   80  tail /var/log/apache2/error.log 
+   81  a2enmod mod_proxy
+   82  a2enmod proxy_http
+   83  service apache reload
+   84  service apache2 reload
+   85  npm start
+   86  tail /var/log/apache2/error.log 
+   87  a2enmod proxy_http
+   88  service apache2 reload
+   89  a2ensite default
+   90  service apache2 reload
+   91  npm start
+   92  ifconfig
+   93  ls
+   94  cd /tmp
+   95  git clone https://gist.github.com/5032312.git /tmp/daemon/
+   96  ls
+   97  cd daemon
+   98  ls
+   99  ls /opt
+  100  nano node_debian_init.sh 
+  101  ls
+  102  cp node_debian_init.sh /etc/init.d/haste-server
+  103  chmod +x /etc/init.d/haste-server 
+  104  cd /etc/init.d
+  105  ls
+  106  update rc.d haste-server defaults
+  107  update-rc.d haste-server defaults
+  108  shutdown -r now
+  109  history
+  110  history |less
+  111  history > ~/history.txt
