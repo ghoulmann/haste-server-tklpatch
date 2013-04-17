@@ -1,7 +1,6 @@
 #!/bin/bash -ex
 
 #configuration
-temp_dir="/tmp/"
 haste_dir="/opt/haste-server"
 
 # Set Hostname
@@ -38,13 +37,20 @@ install git-core \
 	libapache2-mod-proxy-html \
 	ssl-cert
 
-# haste from git
-git clone https://github.com/seejohnrun/haste-server.git $haste-dir
+# node dl with git
+git clone http://github.com/ry/node.git /tmp/node
+# node compile
+cd /tmp/node && ./configure && make && make install
+# npm install
+cd /tmp && curl https://npmjs.org/install.sh | sh
 
-cd $haste-dir && npm config && npm install
+# haste from git
+git clone https://github.com/seejohnrun/haste-server.git $haste_dir
+# config and install with npm
+cd $haste_dir && npm install
 
 a2enmod proxy_http
-
+a2ensite haste
 service apache2 reload
 
 
