@@ -1,11 +1,10 @@
 #!/bin/bash -ex
 
 #configuration
-temp_dir="/tmp/"
 haste_dir="/opt/haste-server"
 
 # Set Hostname
-HOSTNAME = haste
+HOSTNAME=haste
 echo "$HOSTNAME" > /etc/hostname
 sed -i "s|127.0.1.1 \(.*\)|127.0.1.1 $HOSTNAME|" /etc/hosts
 
@@ -38,7 +37,22 @@ install git-core \
 	libapache2-mod-proxy-html \
 	ssl-cert
 
+# node dl with git
+git clone http://github.com/ry/node.git /tmp/node
+# node compile
+cd /tmp/node && ./configure && make && make install
+# npm install
+cd /tmp && curl https://npmjs.org/install.sh | sh
+
 # haste from git
-git clone https://github.com/seejohnrun/haste-server.git $haste-dir
+git clone https://github.com/seejohnrun/haste-server.git $haste_dir
+# config and install with npm
+cd $haste_dir && npm install
+
+a2enmod proxy
+a2enmod proxy_http
+a2ensite haste
+service apache2 reload
+
 
 

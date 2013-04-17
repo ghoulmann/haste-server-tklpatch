@@ -4,7 +4,7 @@
 haste_dir="/opt/haste-server"
 
 # Set Hostname
-HOSTNAME = haste
+HOSTNAME=haste
 echo "$HOSTNAME" > /etc/hostname
 sed -i "s|127.0.1.1 \(.*\)|127.0.1.1 $HOSTNAME|" /etc/hosts
 
@@ -49,6 +49,9 @@ git clone https://github.com/seejohnrun/haste-server.git $haste_dir
 # config and install with npm
 cd $haste_dir && npm install
 
+update-rc.d haste-server defaults
+
+a2enmod proxy
 a2enmod proxy_http
 a2ensite haste
 service apache2 reload
